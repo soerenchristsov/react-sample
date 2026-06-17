@@ -3,8 +3,13 @@
 type HeadingProps = {
   text: string;
   size?: number;
+  important?: boolean;
 };
 
-export function Heading({ text, size = 50 }: HeadingProps) {
-  return <h1 style={{ color: "blue", fontSize: `${size}px` }}>{text}</h1>;
+export function Heading({ text, size = 50, important = false }: HeadingProps) {
+  let color = "blue";
+  if (important) {
+    color = "red";
+  }
+  return <h1 style={{ color, fontSize: `${size}px` }}>{text}</h1>;
 }

@@ -7,12 +7,30 @@ function App() {
 
   const name = "Sören";
 
+  const headings = [
+    { text: "Hello World", size: 50 },
+    { text: name, size: 100, important: true },
+    { text: `Hello ${name}`, size: 50 },
+  ];
+  /*
+  const texts = headings.map(function(h) {
+    return h.text;
+  })
+  */
+  const texts = headings.map((h) => h.text);
+  console.log(headings);
+  console.log(texts);
+
   return (
     <div>
-      <Heading text="Hello World" />
-      <Heading text={name} size={100} />
-      <Heading text={`Hello ${name}`} />
-      <div></div>
+      {headings.map((h, index) => (
+        <Heading
+          key={index}
+          text={h.text}
+          size={h.size}
+          important={h.important}
+        />
+      ))}
     </div>
   );
 }
