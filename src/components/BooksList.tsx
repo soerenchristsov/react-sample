@@ -17,13 +17,18 @@ function Loader() {
 function useBooks() {
   const [books, setBooks] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   async function load() {
-    console.log("loading");
-    setLoading(true);
-    const books = await fetchBooksFromBackend();
-    setBooks(books);
-    setLoading(false);
+    try {
+      setError("");
+      setLoading(true);
+      const books = await fetchBooksFromBackend();
+      setBooks(books);
+      setLoading(false);
+    } catch (err) {
+      setError("Something went wrong");
+    }
   }
 
   useEffect(() => {
@@ -34,13 +39,15 @@ function useBooks() {
   return {
     books,
     loading,
+    error,
   };
 }
 
 export function BooksList() {
-  const { books, loading } = useBooks();
+  const { books, loading, error } = useBooks();
   return (
     <>
+      {error && <div>{error}</div>}
       {loading && <Loader />}
       {books.map((book) => (
         <h1 key={book.ID}>{book.title}</h1>
