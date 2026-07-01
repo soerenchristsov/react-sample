@@ -1,4 +1,6 @@
 import "./App.css";
+import { BooksList } from "./components/BooksList";
+import { Counter } from "./components/Counter";
 import { Heading } from "./components/Heading";
 
 function App() {
@@ -31,6 +33,9 @@ function App() {
           important={h.important}
         />
       ))}
+
+      <Counter />
+      <BooksList />
     </div>
   );
 }
