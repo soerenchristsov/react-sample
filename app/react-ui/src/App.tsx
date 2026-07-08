@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import "./App.css";
-import { Counter } from "./components/Counter";
+import { Counter } from "./components/common/Counter";
 import { Heading } from "./components/Heading";
 import { BooksListQuery } from "./components/BooksListQuery";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
