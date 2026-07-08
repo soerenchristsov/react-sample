@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import "./BooksListQuery.css";
 
 async function fetchBooksFromBackend() {
   const response = await fetch("/odata/v4/catalog/ListOfBooks");
@@ -26,9 +27,38 @@ export function BooksListQuery() {
     <>
       {isError && <div>{error.message}</div>}
       {isPending && <Loader />}
-      {books.map((book) => (
-        <h1 key={book.ID}>{book.title}</h1>
-      ))}
+
+      <table className="booksTable">
+        <thead>
+          <tr>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Genre</th>
+            <th>Stock</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {books.map((book) => (
+            <BooksListItem key={book.ID} book={book} />
+          ))}
+        </tbody>
+      </table>
     </>
+  );
+}
+
+function BooksListItem({ book }) {
+  return (
+    <tr>
+      <td>{book.title}</td>
+      <td>{book.author}</td>
+      <td>{book.genre}</td>
+      <td>{book.stock}</td>
+      <td>
+        {book.price}
+        {book.currency}
+      </td>
+    </tr>
   );
 }

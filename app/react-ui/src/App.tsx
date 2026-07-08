@@ -44,8 +44,6 @@ function App() {
         <BooksList />
         <BooksList />*/}
         <BooksListQuery />
-        <BooksListQuery />
-        <BooksListQuery />
       </div>
 
       <ReactQueryDevtools initialIsOpen={false} />
