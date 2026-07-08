@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 
 async function fetchBooksFromBackend() {
-  const response = await fetch(
-    "http://localhost:4004/odata/v4/catalog/ListOfBooks",
-  );
+  const response = await fetch("/odata/v4/catalog/ListOfBooks");
 
   const body = await response.json();
 
@@ -26,7 +24,7 @@ function useBooks() {
       const books = await fetchBooksFromBackend();
       setBooks(books);
       setLoading(false);
-    } catch (err) {
+    } catch {
       setError("Something went wrong");
     }
   }

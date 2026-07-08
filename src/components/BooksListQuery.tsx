@@ -1,9 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 async function fetchBooksFromBackend() {
-  const response = await fetch(
-    "http://localhost:4004/odata/v4/catalog/ListOfBooks",
-  );
+  const response = await fetch("/odata/v4/catalog/ListOfBooks");
 
   const body = await response.json();
 
