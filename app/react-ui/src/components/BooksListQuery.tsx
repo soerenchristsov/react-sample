@@ -36,6 +36,7 @@ export function BooksListQuery() {
             <th>Genre</th>
             <th>Stock</th>
             <th>Price</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -58,6 +59,9 @@ function BooksListItem({ book }) {
       <td>
         {book.price}
         {book.currency}
+      </td>
+      <td>
+        <a href={`/books/${book.ID}`}>Show</a>
       </td>
     </tr>
   );

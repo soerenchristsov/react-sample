@@ -1,8 +1,6 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Counter } from "../components/common/Counter";
 import { Heading } from "../components/Heading";
 import { BooksListQuery } from "../components/BooksListQuery";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 function Home() {
   console.log("Hello form the logs");
@@ -23,31 +21,26 @@ function Home() {
   const texts = headings.map((h) => h.text);
   console.log(headings);
   console.log(texts);
-  const queryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <div>
-        <Heading text="Home" />
-        {headings.map((h, index) => (
-          <Heading
-            key={index}
-            text={h.text}
-            size={h.size}
-            important={h.important}
-          />
-        ))}
+    <div>
+      <Heading text="Home" />
+      {headings.map((h, index) => (
+        <Heading
+          key={index}
+          text={h.text}
+          size={h.size}
+          important={h.important}
+        />
+      ))}
 
-        <Counter />
-        {/*<BooksList />
+      <Counter />
+      {/*<BooksList />
         <BooksList />
         <BooksList />
         <BooksList />*/}
-        <BooksListQuery />
-      </div>
-
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+      <BooksListQuery />
+    </div>
   );
 }
 
