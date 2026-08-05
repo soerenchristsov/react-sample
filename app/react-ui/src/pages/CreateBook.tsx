@@ -1,32 +1,26 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 async function createBookInBackend(book) {
-  const response = await fetch("/odata/v4/admin/Books", {
+  await fetch("/odata/v4/admin/Books", {
     method: "POST",
     body: JSON.stringify(book),
     headers: {
       "Content-Type": "application/json",
     },
   });
-
-  const body = await response.json();
-  console.log(body);
 }
 
 export function CreateBook() {
-  const [title, setTitle] = useState("");
-  const [titleError, setTitleError] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  function submitForm(e) {
-    e.preventDefault();
-    console.log("submitting", title);
+  function submitForm(data) {
+    console.log("data", data);
+    const { title } = data;
 
-    if (title.length === 0) {
-      setTitleError("Please add title");
-      return;
-    }
-
-    setTitleError("");
     const book = {
       title: title,
       author_ID: 101,
@@ -38,18 +32,27 @@ export function CreateBook() {
     <div>
       <h1>Create Book</h1>
       <form
-        onSubmit={submitForm}
+        onSubmit={handleSubmit(submitForm)}
         style={{ display: "flex", flexDirection: "column", gap: "5px" }}
       >
         <label htmlFor="title">Title</label>
-        <input
-          name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        {titleError}
+        <input {...register("title", { required: true })} />
+        {errors.title && <span>This field is required</span>}
+
+        <label htmlFor="price">Price</label>
+        <input {...register("price", { min: 0, max: 100 })} />
+        {errors.price && <span>Please enter a valid price</span>}
+
         <label htmlFor="author">Author</label>
-        <input name="author"></input>
+        <input {...register("author")}></input>
+
+        <label htmlFor="checkbox">Checkbox</label>
+        <input type="checkbox" {...register("checkbox")} />
+
+        <select {...register("select")}>
+          <option>Test</option>
+          <option>Test2</option>
+        </select>
         <button type="reset">Reset</button>
         <button type="submit">Submit</button>
       </form>
