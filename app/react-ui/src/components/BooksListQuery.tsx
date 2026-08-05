@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import "./BooksListQuery.css";
+import { NavLink } from "react-router";
 
 async function fetchBooksFromBackend() {
   const response = await fetch("/odata/v4/catalog/ListOfBooks");
@@ -61,7 +62,7 @@ function BooksListItem({ book }) {
         {book.currency}
       </td>
       <td>
-        <a href={`/books/${book.ID}`}>Show</a>
+        <NavLink to={`/books/${book.ID}`}>Show</NavLink>
       </td>
     </tr>
   );
