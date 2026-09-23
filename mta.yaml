@@ -32,6 +32,7 @@ modules:
           srv-url: ${default-url}
     requires:
       - name: backend-auth
+      - name: backend-db
   - name: approuter
     type: approuter.nodejs
     path: app/router
@@ -52,6 +53,14 @@ modules:
         properties:
           app-protocol: ${protocol}
           app-uri: ${default-uri}
+
+  - name: backend-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: backend-db
 
 resources:
   - name: backend-auth
@@ -76,3 +85,8 @@ resources:
               - '$XSAPPNAME.admin'
     requires:
       - name: app-api
+  - name: backend-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
