@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 
-async function createBookInBackend(book) {
+async function createBookInBackend(book: any) {
   await fetch("/odata/v4/admin/Books", {
     method: "POST",
     body: JSON.stringify(book),
@@ -17,7 +17,7 @@ export function CreateBook() {
     formState: { errors },
   } = useForm();
 
-  function submitForm(data) {
+  function submitForm(data: any) {
     console.log("data", data);
     const { title } = data;
 

@@ -9,7 +9,14 @@ build-parameters:
     - builder: custom
       commands:
         - npm ci
-        - npx cds build --production
+        # Backend build
+        - npm run build
+        # Frontend build
+        - npm run build --prefix app/react-ui
+        # Delete old frontend code
+        - rm -rf app/router/dist
+        # Copy the new frontend over to the approuter
+        - cp -r app/react-ui/dist app/router/dist
 modules:
   - name: backend-srv
     type: nodejs
