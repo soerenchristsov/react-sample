@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router";
+import { NavLink, useParams } from "react-router";
 
 export function BookDetail() {
   const params = useParams();
@@ -7,8 +7,12 @@ export function BookDetail() {
   const { data } = useBook(params.id!);
 
   return (
-    <div>
-      <h1>{data?.title}</h1>
+    <div style={{ maxWidth: "420px", margin: "0 auto", textAlign: "left" }}>
+      <NavLink to="/">&larr; Back to books</NavLink>
+      <div className="card" style={{ marginTop: "16px" }}>
+        <h1 style={{ fontSize: "32px", margin: "0 0 8px" }}>{data?.title}</h1>
+        {data?.author && <p>by {data.author}</p>}
+      </div>
     </div>
   );
 }

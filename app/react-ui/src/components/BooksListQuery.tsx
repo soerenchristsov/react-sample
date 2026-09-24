@@ -25,8 +25,8 @@ function useBooks() {
 export function BooksListQuery() {
   const { data: books, isPending, error, isError } = useBooks();
   return (
-    <>
-      {isError && <div>{error.message}</div>}
+    <div className="card">
+      {isError && <div className="error-message">{error.message}</div>}
       {isPending && <Loader />}
 
       <table className="booksTable">
@@ -46,7 +46,7 @@ export function BooksListQuery() {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 }
 

@@ -1,12 +1,25 @@
-import { Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router";
+import "./MainLayout.css";
 
 export function MainLayout() {
   return (
     <div>
-      <div style={{ height: "20px", backgroundColor: "grey", width: "100%" }}>
-        My Books
-      </div>
-      <Outlet />
+      <header className="site-header">
+        <NavLink to="/" className="brand">
+          My Books
+        </NavLink>
+        <nav className="site-nav">
+          <NavLink to="/" end>
+            Home
+          </NavLink>
+          <NavLink to="/components">Components</NavLink>
+          <NavLink to="/create">Create Book</NavLink>
+          <NavLink to="/about">About</NavLink>
+        </nav>
+      </header>
+      <main>
+        <Outlet />
+      </main>
     </div>
   );
 }

@@ -29,32 +29,51 @@ export function CreateBook() {
   }
 
   return (
-    <div>
-      <h1>Create Book</h1>
+    <div style={{ maxWidth: "420px", margin: "0 auto" }}>
+      <h1 style={{ fontSize: "32px", textAlign: "left" }}>Create Book</h1>
       <form
         onSubmit={handleSubmit(submitForm)}
-        style={{ display: "flex", flexDirection: "column", gap: "5px" }}
+        className="card"
+        style={{ display: "flex", flexDirection: "column", gap: "12px" }}
       >
-        <label htmlFor="title">Title</label>
-        <input {...register("title", { required: true })} />
-        {errors.title && <span>This field is required</span>}
+        <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+          <label htmlFor="title">Title</label>
+          <input {...register("title", { required: true })} />
+          {errors.title && (
+            <span className="error-message">This field is required</span>
+          )}
+        </div>
 
-        <label htmlFor="price">Price</label>
-        <input {...register("price", { min: 0, max: 100 })} />
-        {errors.price && <span>Please enter a valid price</span>}
+        <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+          <label htmlFor="price">Price</label>
+          <input {...register("price", { min: 0, max: 100 })} />
+          {errors.price && (
+            <span className="error-message">Please enter a valid price</span>
+          )}
+        </div>
 
-        <label htmlFor="author">Author</label>
-        <input {...register("author")}></input>
+        <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+          <label htmlFor="author">Author</label>
+          <input {...register("author")}></input>
+        </div>
 
-        <label htmlFor="checkbox">Checkbox</label>
-        <input type="checkbox" {...register("checkbox")} />
+        <label
+          htmlFor="checkbox"
+          style={{ display: "flex", alignItems: "center", gap: "8px" }}
+        >
+          <input type="checkbox" {...register("checkbox")} />
+          Checkbox
+        </label>
 
         <select {...register("select")}>
           <option>Test</option>
           <option>Test2</option>
         </select>
-        <button type="reset">Reset</button>
-        <button type="submit">Submit</button>
+
+        <div style={{ display: "flex", gap: "8px", marginTop: "8px" }}>
+          <button type="reset">Reset</button>
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
   );

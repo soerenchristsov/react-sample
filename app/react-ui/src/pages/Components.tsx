@@ -1,12 +1,11 @@
 import { Counter } from "../components/common/Counter";
 import { Heading } from "../components/Heading";
-import { BooksListQuery } from "../components/BooksListQuery";
 
-function Home() {
+function Components() {
   console.log("Hello form the logs");
   // This is a comment in javascript
 
-  const name = "Sören";
+  const name = "React";
 
   const headings = [
     { text: "Hello World", size: 50 },
@@ -34,14 +33,11 @@ function Home() {
         />
       ))}
 
-      <Counter />
-      {/*<BooksList />
-        <BooksList />
-        <BooksList />
-        <BooksList />*/}
-      <BooksListQuery />
+      <div style={{ margin: "24px 0" }}>
+        <Counter />
+      </div>
     </div>
   );
 }
 
-export default Home;
+export default Components;

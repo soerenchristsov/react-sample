@@ -4,9 +4,11 @@ export function Counter() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <h1>{count}</h1>
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "16px" }}>
+      <span className="counter" style={{ fontSize: "28px", padding: "4px 12px" }}>
+        {count}
+      </span>
       <button onClick={() => setCount(count + 1)}>Add one</button>
-    </>
+    </div>
   );
 }
