@@ -1,4 +1,5 @@
 import { NavLink, Outlet } from "react-router";
+import { CurrentUser } from "./CurrentUser";
 import "./MainLayout.css";
 
 export function MainLayout() {
@@ -16,6 +17,7 @@ export function MainLayout() {
           <NavLink to="/create">Create Book</NavLink>
           <NavLink to="/about">About</NavLink>
         </nav>
+        <CurrentUser />
       </header>
       <main>
         <Outlet />

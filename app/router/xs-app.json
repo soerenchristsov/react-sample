@@ -7,6 +7,11 @@
       "csrfProtection": true
     },
     {
+      "source": "^/user-api(.*)",
+      "target": "$1",
+      "service": "sap-approuter-userapi"
+    },
+    {
       "source": "^/(.*)$",
       "target": "$1",
       "localDir": "dist"
